@@ -134,10 +134,6 @@
 .theme-toggle .icon-moon { display: none; }
 :root[data-theme='dark'] .theme-toggle .icon-sun { display: none; }
 :root[data-theme='dark'] .theme-toggle .icon-moon { display: block; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .theme-toggle .icon-sun { display: none; }
-  :root:not([data-theme='light']) .theme-toggle .icon-moon { display: block; }
-}
 
 /* ---- mobile menu button ------------------------------------------------- */
 .menu-btn {
@@ -455,9 +451,6 @@
   min-height: 1em;
 }
 :root[data-theme='dark'] .field__error { color: #FF8B7B; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .field__error { color: #FF8B7B; }
-}
 
 .field.has-error input,
 .field.has-error select,

@@ -90,48 +90,13 @@
 }
 
 /* ==========================================================================
-   Dark theme
-   Defined twice with identical values: once for "system prefers dark and the
-   user has not explicitly chosen light", once for an explicit dark choice.
-   That way the header toggle wins in both directions.
+   Dark theme — OPT-IN ONLY
+   Light is the default for every visitor regardless of their OS setting.
+   Dark applies only when the header toggle sets data-theme="dark", which is
+   then remembered in localStorage. There is deliberately no
+   `prefers-color-scheme` rule here: adding one would let the OS override the
+   intended default. See main.js and the inline <head> script.
    ========================================================================== */
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --paper:       #0B1420;
-    --surface:     #121E2E;
-    --surface-2:   #162436;
-    --surface-3:   #1D2E44;
-    --ink:         #E9EEF4;
-    --ink-2:       #C7D6E6;
-    --muted:       #97A5B6;   /* 6.4:1 on --paper */
-    --line:        #22344A;
-    --line-strong: #2E455F;
-
-    --navy:        #6FA8DC;
-    --navy-soft:   #8FC0E8;
-    --accent:      #2DD4BF;   /* light fill, dark text — 9.1:1 */
-    --accent-hover:#5EEAD4;
-    --accent-tint: #10312F;
-    --accent-ink:  #04211E;
-    --gold:        #E3C05C;
-    --gold-ink:    #E3C05C;
-    --gold-tint:   #2B2412;
-
-    --band:        #060E17;
-    --band-2:      #0F2942;
-    --band-ink:    #EAF0F6;
-    --band-muted:  #9DB2C7;
-    --band-line:   #1E3A57;
-
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .40);
-    --shadow-md: 0 2px 6px rgba(0, 0, 0, .42), 0 10px 24px rgba(0, 0, 0, .34);
-    --shadow-lg: 0 6px 14px rgba(0, 0, 0, .46), 0 24px 56px rgba(0, 0, 0, .42);
-    --ring: 0 0 0 3px rgba(45, 212, 191, .38);
-
-    color-scheme: dark;
-  }
-}
 
 :root[data-theme='dark'] {
   --paper:       #0B1420;

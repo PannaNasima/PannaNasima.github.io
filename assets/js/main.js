@@ -12,35 +12,37 @@
   root.classList.remove('no-js');
 
   /* ---- theme toggle ----------------------------------------------------
-     The stored preference is applied by an inline script in <head> before
-     first paint; this only wires up the button. */
+     LIGHT IS THE DEFAULT for everyone, whatever their OS is set to. Dark is
+     opt-in via this button and is then remembered in localStorage. The saved
+     choice is applied by an inline <head> script before first paint; this
+     only wires up the button. Deliberately no prefers-color-scheme check —
+     reading the OS here would defeat the light default. */
   var toggle = document.querySelector('[data-theme-toggle]');
+
+  var isDark = function () {
+    return root.getAttribute('data-theme') === 'dark';
+  };
+
+  // Keep the browser-UI colour in step with the active theme.
+  var paintMeta = function () {
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', isDark() ? '#0B1420' : '#FBFAF8');
+  };
+
   if (toggle) {
     var sync = function () {
-      var explicit = root.getAttribute('data-theme');
-      var dark = explicit
-        ? explicit === 'dark'
-        : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var dark = isDark();
       toggle.setAttribute('aria-pressed', String(dark));
       toggle.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+      paintMeta();
     };
 
     toggle.addEventListener('click', function () {
-      var explicit = root.getAttribute('data-theme');
-      var dark = explicit
-        ? explicit === 'dark'
-        : window.matchMedia('(prefers-color-scheme: dark)').matches;
-      var next = dark ? 'light' : 'dark';
+      var next = isDark() ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
       try { localStorage.setItem('theme', next); } catch (e) {}
       sync();
     });
-
-    // follow the OS while the user has expressed no explicit choice
-    var mq = window.matchMedia('(prefers-color-scheme: dark)');
-    var onMq = function () { if (!root.getAttribute('data-theme')) sync(); };
-    if (mq.addEventListener) mq.addEventListener('change', onMq);
-    else if (mq.addListener) mq.addListener(onMq);
 
     sync();
   }

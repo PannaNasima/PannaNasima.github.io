@@ -129,6 +129,14 @@ animation's `transform` overrides any `transform` set in a rule, so never centre
 elements with `translateX(-50%)` — use `left:0; right:0; margin-inline:auto` instead.
 This bit twice during the build.
 
+**Light is the default theme for everyone**, whatever their computer is set to. Dark is
+opt-in via the header toggle and is then remembered in `localStorage`. There is intentionally
+**no `prefers-color-scheme: dark` rule in the CSS** — the only way to reach dark is
+`data-theme="dark"` on `<html>`, which only the toggle sets. If you ever want the site to
+follow the visitor's OS again, re-add a `@media (prefers-color-scheme: dark)` block in
+`tokens.css` mirroring the `:root[data-theme='dark']` values; until then, don't add one by
+accident, because it would silently override the light default.
+
 **Motion is fully disabled** under `prefers-reduced-motion: reduce`, and all content is
 visible without JavaScript (`.no-js` fallback).
 
