@@ -1,0 +1,169 @@
+/* ==========================================================================
+   Ledger Navy — design tokens
+   Light is the base theme. Dark is a re-picked palette, not an inversion:
+   every foreground/background pair is chosen to clear WCAG AA in both modes.
+   ========================================================================== */
+
+:root {
+  /* ---- surfaces & text -------------------------------------------------- */
+  --paper:        #FBFAF8;   /* page background, warm off-white              */
+  --surface:      #FFFFFF;   /* cards                                        */
+  --surface-2:    #F4F1EC;   /* recessed / alternating bands                 */
+  --surface-3:    #EDE9E1;   /* chips, subtle fills                          */
+  --ink:          #0A1A2F;   /* primary text                                 */
+  --ink-2:        #16314F;   /* headings on tinted surfaces                  */
+  --muted:        #5B6472;   /* secondary text — 5.9:1 on --paper            */
+  --line:         #E6E3DD;   /* hairlines                                    */
+  --line-strong:  #D5D0C6;
+
+  /* ---- brand ------------------------------------------------------------ */
+  --navy:         #12395F;
+  --navy-soft:    #1E5A8F;
+  --accent:       #0F766E;   /* 5.3:1 on white — CTA fill with white text    */
+  --accent-hover: #0B5D57;
+  --accent-tint:  #E6F2F0;
+  --accent-ink:   #FFFFFF;   /* text that sits on --accent                   */
+  --gold:         #C9A227;   /* decorative only — rules, borders, bullets   */
+  --gold-ink:     #856410;   /* gold TEXT/icons — 4.8:1 on --gold-tint      */
+  --gold-tint:    #F7EFD6;
+
+  /* ---- portrait plate — stays light in BOTH themes (see PLAN §3.5) ------ */
+  --plate-from:   #FBFAF8;
+  --plate-to:     #E8EDF3;
+  --plate-line:   #DCDCD4;
+
+  /* ---- inverted band (CTA / footer) ------------------------------------- */
+  --band:         #0A1A2F;
+  --band-2:       #12395F;
+  --band-ink:     #F2F5F8;
+  --band-muted:   #9DB2C7;
+  --band-line:    #24405E;
+
+  /* ---- effects ---------------------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(10, 26, 47, .05), 0 1px 3px rgba(10, 26, 47, .04);
+  --shadow-md: 0 2px 4px rgba(10, 26, 47, .04), 0 8px 20px rgba(10, 26, 47, .07);
+  --shadow-lg: 0 4px 8px rgba(10, 26, 47, .05), 0 20px 48px rgba(10, 26, 47, .11);
+  --ring: 0 0 0 3px rgba(15, 118, 110, .32);
+
+  /* ---- radii ------------------------------------------------------------ */
+  --r-xs: 6px;
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  /* ---- spacing scale (4px base) ----------------------------------------- */
+  --s-1: 4px;   --s-2: 8px;   --s-3: 12px;  --s-4: 16px;
+  --s-5: 24px;  --s-6: 32px;  --s-7: 48px;  --s-8: 64px;
+  --s-9: 96px;  --s-10: 128px;
+
+  /* ---- layout ----------------------------------------------------------- */
+  --container: 1200px;
+  --measure: 68ch;
+  --gutter: clamp(20px, 5vw, 40px);
+  --section-y: clamp(64px, 9vw, 128px);
+  --header-h: 72px;
+
+  /* ---- type ------------------------------------------------------------- */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --t-xs:   clamp(0.75rem, 0.73rem + 0.10vw, 0.8125rem);
+  --t-sm:   clamp(0.8125rem, 0.79rem + 0.12vw, 0.875rem);
+  --t-base: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --t-md:   clamp(1.0625rem, 1.02rem + 0.22vw, 1.1875rem);
+  --t-lg:   clamp(1.1875rem, 1.10rem + 0.42vw, 1.375rem);
+  --t-xl:   clamp(1.375rem, 1.24rem + 0.66vw, 1.75rem);
+  --t-2xl:  clamp(1.625rem, 1.38rem + 1.22vw, 2.375rem);
+  --t-3xl:  clamp(2rem, 1.58rem + 2.10vw, 3.25rem);
+  --t-4xl:  clamp(2.375rem, 1.72rem + 3.28vw, 4.25rem);
+
+  /* ---- motion ----------------------------------------------------------- */
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --dur-fast: 150ms;
+  --dur: 260ms;
+  --dur-slow: 620ms;
+
+  color-scheme: light;
+}
+
+/* ==========================================================================
+   Dark theme
+   Defined twice with identical values: once for "system prefers dark and the
+   user has not explicitly chosen light", once for an explicit dark choice.
+   That way the header toggle wins in both directions.
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --paper:       #0B1420;
+    --surface:     #121E2E;
+    --surface-2:   #162436;
+    --surface-3:   #1D2E44;
+    --ink:         #E9EEF4;
+    --ink-2:       #C7D6E6;
+    --muted:       #97A5B6;   /* 6.4:1 on --paper */
+    --line:        #22344A;
+    --line-strong: #2E455F;
+
+    --navy:        #6FA8DC;
+    --navy-soft:   #8FC0E8;
+    --accent:      #2DD4BF;   /* light fill, dark text — 9.1:1 */
+    --accent-hover:#5EEAD4;
+    --accent-tint: #10312F;
+    --accent-ink:  #04211E;
+    --gold:        #E3C05C;
+    --gold-ink:    #E3C05C;
+    --gold-tint:   #2B2412;
+
+    --band:        #060E17;
+    --band-2:      #0F2942;
+    --band-ink:    #EAF0F6;
+    --band-muted:  #9DB2C7;
+    --band-line:   #1E3A57;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .40);
+    --shadow-md: 0 2px 6px rgba(0, 0, 0, .42), 0 10px 24px rgba(0, 0, 0, .34);
+    --shadow-lg: 0 6px 14px rgba(0, 0, 0, .46), 0 24px 56px rgba(0, 0, 0, .42);
+    --ring: 0 0 0 3px rgba(45, 212, 191, .38);
+
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --paper:       #0B1420;
+  --surface:     #121E2E;
+  --surface-2:   #162436;
+  --surface-3:   #1D2E44;
+  --ink:         #E9EEF4;
+  --ink-2:       #C7D6E6;
+  --muted:       #97A5B6;
+  --line:        #22344A;
+  --line-strong: #2E455F;
+
+  --navy:        #6FA8DC;
+  --navy-soft:   #8FC0E8;
+  --accent:      #2DD4BF;
+  --accent-hover:#5EEAD4;
+  --accent-tint: #10312F;
+  --accent-ink:  #04211E;
+  --gold:        #E3C05C;
+  --gold-ink:    #E3C05C;
+  --gold-tint:   #2B2412;
+
+  --band:        #060E17;
+  --band-2:      #0F2942;
+  --band-ink:    #EAF0F6;
+  --band-muted:  #9DB2C7;
+  --band-line:   #1E3A57;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .40);
+  --shadow-md: 0 2px 6px rgba(0, 0, 0, .42), 0 10px 24px rgba(0, 0, 0, .34);
+  --shadow-lg: 0 6px 14px rgba(0, 0, 0, .46), 0 24px 56px rgba(0, 0, 0, .42);
+  --ring: 0 0 0 3px rgba(45, 212, 191, .38);
+
+  color-scheme: dark;
+}

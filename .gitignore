@@ -1,0 +1,14 @@
+# Source material — CV screenshots, LinkedIn captures and the original brief.
+# These are personal documents and are NOT part of the published site.
+# Keeping them out of git means they never end up at a public URL.
+information/
+
+# Planning notes — useful locally, not meant for visitors.
+PLAN.md
+
+# OS / editor noise
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
